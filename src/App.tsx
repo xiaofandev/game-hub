@@ -4,9 +4,10 @@ import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<string | null>();
+  const [selectedGenre, setSelectedGenre] = useState<Genre>();
 
   return (
     <Grid
@@ -25,8 +26,8 @@ function App() {
       <Show above="lg">
         <GridItem area={"aside"} paddingX="20px">
           <GenreList
-            onSelectGenre={(id) => {
-              setSelectedGenre(id);
+            onSelectGenre={(genre) => {
+              setSelectedGenre(genre);
             }}
           />
         </GridItem>
