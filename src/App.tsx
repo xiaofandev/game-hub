@@ -16,7 +16,7 @@ function App() {
         lg: "200px 1fr",
       }}
     >
-      <GridItem area={"nav"}>
+      <GridItem area={"nav"} paddingY={5}>
         <NavBar />
       </GridItem>
       <Show above="lg">
