@@ -43,7 +43,10 @@ function App() {
           }}
           selectedPlatform={selectedPlatform}
         />
-        <GameGrid selectedGenre={selectedGenre} />
+        <GameGrid
+          selectedGenre={selectedGenre}
+          selectedPlatform={selectedPlatform}
+        />
       </GridItem>
     </Grid>
   );
