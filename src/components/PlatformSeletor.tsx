@@ -9,23 +9,23 @@ interface Props {
 
 const PlatformSeletor = ({ onPlatformChange, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
+  if (error) return null;
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         {selectedPlatform ? selectedPlatform.name : "Platform"}
       </MenuButton>
       <MenuList>
-        {!error &&
-          data.map((platform) => (
-            <MenuItem
-              key={platform.id}
-              onClick={() => {
-                onPlatformChange(platform);
-              }}
-            >
-              {platform.name}
-            </MenuItem>
-          ))}
+        {data.map((platform) => (
+          <MenuItem
+            key={platform.id}
+            onClick={() => {
+              onPlatformChange(platform);
+            }}
+          >
+            {platform.name}
+          </MenuItem>
+        ))}
       </MenuList>
     </Menu>
   );
