@@ -13,6 +13,7 @@ export interface QueryGame {
   genre?: Genre;
   platform?: Platform;
   ordering?: string;
+  search?: string;
 }
 
 function App() {
@@ -29,7 +30,11 @@ function App() {
       }}
     >
       <GridItem area={"nav"} padding={5}>
-        <NavBar />
+        <NavBar
+          onSearch={(searchText) =>
+            setQueryGame({ ...queryGame, search: searchText })
+          }
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area={"aside"} paddingX="20px">
