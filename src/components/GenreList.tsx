@@ -1,30 +1,7 @@
-import { useEffect, useState } from "react";
-import apiClient from "../api/api-client";
-import { CanceledError } from "axios";
-
-interface Genre {
-  id: number;
-  name: string;
-}
+import useGenres from "../hooks/useGenres";
 
 const GenreList = () => {
-  const [genres, setGenres] = useState<Genre[]>();
-  const [error, setError] = useState<string>();
-
-  useEffect(() => {
-    const controller = new AbortController();
-    apiClient
-      .get("/genres", { signal: controller.signal })
-      .then((resp) => {
-        setGenres(resp.data.results);
-      })
-      .catch((error: Error) => {
-        if (!(error instanceof CanceledError)) {
-          setError(error.message);
-        }
-      });
-    return () => controller.abort();
-  }, []);
+  const { data: genres, error } = useGenres();
   return (
     <>
       <div>{error && <p>{error}</p>}</div>
