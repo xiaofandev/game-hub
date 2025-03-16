@@ -1,14 +1,16 @@
-import { HStack } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import GenreList from "./components/GenreList";
 import Navigation from "./components/Navigation";
+import GameList from "./components/GameList";
 
 function App() {
   return (
     <>
       <Navigation></Navigation>
-      <HStack pl={4}>
-        <GenreList></GenreList>
-      </HStack>
+      <Flex pl={4}>
+        <GenreList />
+        <GameList />
+      </Flex>
     </>
   );
 }
