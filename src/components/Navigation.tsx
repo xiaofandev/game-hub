@@ -4,6 +4,7 @@ const Navigation = () => {
   return (
     <Flex p={4} alignItems={"center"} gap={8}>
       <Text
+        fontSize="24px"
         fontWeight={900}
         bgColor={"black"}
         color={"white"}
