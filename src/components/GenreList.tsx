@@ -19,7 +19,6 @@ const GenreList = () => {
         setGenres(resp.data.results);
       })
       .catch((error: Error) => {
-        console.log(error);
         if (!(error instanceof CanceledError)) {
           setError(error.message);
         }
