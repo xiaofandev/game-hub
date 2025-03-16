@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Navigation></Navigation>
-      <HStack>
+      <HStack pl={4}>
         <GenreList></GenreList>
       </HStack>
     </>
