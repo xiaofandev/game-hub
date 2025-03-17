@@ -22,7 +22,7 @@ const GameList = () => {
       {error && <p>{error}</p>}
       <SimpleGrid columns={4} spacing={12} p={2} pt={0}>
         {data?.map((game) => (
-          <GameCard data={game} />
+          <GameCard data={game} key={game.id} />
         ))}
       </SimpleGrid>
     </>

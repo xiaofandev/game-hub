@@ -49,7 +49,7 @@ const GameCard = ({ data }: Props) => {
         <Flex justifyContent={"space-between"}>
           <HStack pb={2}>
             {data.parent_platforms.map(({ platform }) => (
-              <Icon as={iconMap[platform.slug]} />
+              <Icon key={platform.id} as={iconMap[platform.slug]} />
             ))}
           </HStack>
           <Badge
