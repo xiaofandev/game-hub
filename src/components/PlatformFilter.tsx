@@ -20,7 +20,9 @@ const PlatformFilter = ({ onSelectPlatform }: Props) => {
       width={200}
     >
       {platforms?.map((platform) => (
-        <option value={platform.id}>{platform.name}</option>
+        <option key={platform.id} value={platform.id}>
+          {platform.name}
+        </option>
       ))}
     </Select>
   );
