@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import apiClient from "../api/api-client";
 import { CanceledError } from "axios";
 
-const useData = <T>(url: string, dependencies: any[] = []) => {
+const useData = <T>(url: string, params?: any, dependencies: any[] = []) => {
   const [data, setData] = useState<T[]>();
   const [error, setError] = useState<string>();
 
   useEffect(() => {
     const controller = new AbortController();
     apiClient
-      .get(url, { signal: controller.signal })
+      .get(url, { params, signal: controller.signal })
       .then((resp) => {
         setData(resp.data.results);
       })
