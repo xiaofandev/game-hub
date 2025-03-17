@@ -15,11 +15,13 @@ export interface Game {
   metacritic: number;
 }
 
-const GameList = () => {
-  const { data, error } = useData<Game>("/games");
+interface Props {
+  data: Game[] | undefined;
+}
+
+const GameList = ({ data }: Props) => {
   return (
     <>
-      {error && <p>{error}</p>}
       <SimpleGrid columns={4} spacing={12} p={2} pt={0}>
         {data?.map((game) => (
           <GameCard data={game} key={game.id} />
