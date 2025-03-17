@@ -1,6 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import useData from "../hooks/useData";
 import GameCard from "./GameCard";
+import GameCardLoading from "./GameCardSkeleton";
 
 interface Platform {
   id: number;
@@ -20,9 +20,11 @@ interface Props {
 }
 
 const GameList = ({ data }: Props) => {
+  const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
       <SimpleGrid columns={4} spacing={12} p={2} pt={0}>
+        {!data && skeletons.map((id) => <GameCardLoading key={id} />)}
         {data?.map((game) => (
           <GameCard data={game} key={game.id} />
         ))}

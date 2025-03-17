@@ -10,7 +10,7 @@ import PlatformFilter from "./components/PlatformFilter";
 function App() {
   const [orderBy, setOrderBy] = useState<string>("");
   const [selectedPlatform, setSelectedPlaform] = useState("");
-
+  const [isLoading, setIsLoading] = useState(true);
   const { data: games } = useData<Game>(
     "/games",
     {
