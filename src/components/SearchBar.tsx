@@ -13,27 +13,27 @@ interface Platform {
 
 const SearchBar = ({ onSelectOrderBy, onSelectPlatform }: Props) => {
   return (
-    <>
-      <HStack>
-        <Text>Orderby:</Text>
-        <Select
-          placeholder="Relevance"
-          onChange={(e) => {
-            onSelectOrderBy(e.target.value);
-          }}
-        >
-          <option value="added">Date added</option>
-          <option value="name">Name</option>
-          <option value="released">Release date</option>
-          <option value="metacritic">Popularity</option>
-          <option value="rating">Average rating</option>
-        </Select>
-      </HStack>
+    <HStack p={2} pb={4}>
+      <Text>Orderby:</Text>
+      <Select
+        placeholder="Relevance"
+        onChange={(e) => {
+          onSelectOrderBy(e.target.value);
+        }}
+        width={200}
+      >
+        <option value="added">Date added</option>
+        <option value="name">Name</option>
+        <option value="released">Release date</option>
+        <option value="metacritic">Popularity</option>
+        <option value="rating">Average rating</option>
+      </Select>
       <Select
         placeholder="All Platforms"
         onChange={(e) => {
           onSelectPlatform(e.target.value);
         }}
+        width={200}
       >
         <option value="pc">PC</option>
         <option value="playstation">Playstation</option>
@@ -44,7 +44,7 @@ const SearchBar = ({ onSelectOrderBy, onSelectPlatform }: Props) => {
         <option value="ios">IOS</option>
         <option value="android">Android</option>
       </Select>
-    </>
+    </HStack>
   );
 };
 
