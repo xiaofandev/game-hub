@@ -8,12 +8,14 @@ import { useState } from "react";
 
 function App() {
   const [orderBy, setOrderBy] = useState<string>("");
+  const [selectedPlatform, setSelectedPlaform] = useState("");
   const { data: games, error: gamesError } = useData<Game>(
     "/games",
     {
       ordering: orderBy,
+      parent_platforms: selectedPlatform,
     },
-    [orderBy]
+    [orderBy, selectedPlatform]
   );
 
   return (
@@ -24,7 +26,7 @@ function App() {
         <Stack>
           <SearchBar
             onSelectOrderBy={(orderBy) => setOrderBy(orderBy)}
-            onSelectPlatform={(platform) => console.log(platform)}
+            onSelectPlatform={(platform) => setSelectedPlaform(platform)}
           />
           <GameList data={games} />
         </Stack>

@@ -12,6 +12,9 @@ interface Platform {
 }
 
 const SearchBar = ({ onSelectOrderBy, onSelectPlatform }: Props) => {
+  const { data: platforms, error } = useData<Platform>(
+    "/platforms/lists/parents"
+  );
   return (
     <HStack p={2} pb={4}>
       <Text>Orderby:</Text>
@@ -35,14 +38,9 @@ const SearchBar = ({ onSelectOrderBy, onSelectPlatform }: Props) => {
         }}
         width={200}
       >
-        <option value="pc">PC</option>
-        <option value="playstation">Playstation</option>
-        <option value="xbox">Xbox</option>
-        <option value="nintendo">Nintendo</option>
-        <option value="mac">Mac</option>
-        <option value="linux">Linux</option>
-        <option value="ios">IOS</option>
-        <option value="android">Android</option>
+        {platforms?.map((platform) => (
+          <option value={platform.id}>{platform.name}</option>
+        ))}
       </Select>
     </HStack>
   );
