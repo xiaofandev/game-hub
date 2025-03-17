@@ -1,15 +1,17 @@
-import { Flex, Stack } from "@chakra-ui/react";
+import { Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import GenreList from "./components/GenreList";
 import Navigation from "./components/Navigation";
 import GameList, { Game } from "./components/GameList";
-import SearchBar from "./components/SearchBar";
 import useData from "./hooks/useData";
 import { useState } from "react";
+import Orderby from "./components/Orderby";
+import PlatformFilter from "./components/PlatformFilter";
 
 function App() {
   const [orderBy, setOrderBy] = useState<string>("");
   const [selectedPlatform, setSelectedPlaform] = useState("");
-  const { data: games, error: gamesError } = useData<Game>(
+
+  const { data: games } = useData<Game>(
     "/games",
     {
       ordering: orderBy,
@@ -24,10 +26,12 @@ function App() {
       <Flex pl={4}>
         <GenreList />
         <Stack>
-          <SearchBar
-            onSelectOrderBy={(orderBy) => setOrderBy(orderBy)}
-            onSelectPlatform={(platform) => setSelectedPlaform(platform)}
-          />
+          <HStack p={2}>
+            <Orderby onSelectOrderBy={(orderby) => setOrderBy(orderby)} />
+            <PlatformFilter
+              onSelectPlatform={(platform) => setSelectedPlaform(platform)}
+            />
+          </HStack>
           <GameList data={games} />
         </Stack>
       </Flex>
