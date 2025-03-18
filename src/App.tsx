@@ -10,20 +10,25 @@ import PlatformFilter from "./components/PlatformFilter";
 function App() {
   const [orderBy, setOrderBy] = useState<string>("");
   const [selectedPlatform, setSelectedPlaform] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const { data: games, isLoading } = useData<Game>(
     "/games",
     {
       ordering: orderBy,
       parent_platforms: selectedPlatform,
+      genres: selectedGenre,
     },
-    [orderBy, selectedPlatform]
+    [orderBy, selectedPlatform, selectedGenre]
   );
 
   return (
     <>
       <Navigation></Navigation>
       <Flex pl={4}>
-        <GenreList />
+        <GenreList
+          selectedGenre={selectedGenre}
+          onSelectGenre={(genre) => setSelectedGenre(genre)}
+        />
         <Stack>
           <HStack pt={2}>
             <Orderby onSelectOrderBy={(orderby) => setOrderBy(orderby)} />

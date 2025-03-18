@@ -3,15 +3,26 @@ import {
   List,
   ListItem,
   Image,
-  Text,
   Heading,
   Stack,
+  Link,
 } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
 import GenreSkeleton from "./GenreSkeleton";
+import useData from "../hooks/useData";
 
-const GenreList = () => {
-  const { data: genres, isLoading } = useGenres();
+interface Genre {
+  id: number;
+  name: string;
+  image_background: string;
+}
+
+interface Props {
+  selectedGenre?: string;
+  onSelectGenre: (genre: string) => void;
+}
+
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
+  const { data: genres, isLoading } = useData<Genre>("/genres");
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <Stack>
@@ -36,7 +47,14 @@ const GenreList = () => {
                 borderRadius={10}
                 objectFit="cover"
               />
-              <Text>{genre.name}</Text>
+              <Link
+                onClick={() => onSelectGenre(genre.id.toString())}
+                fontWeight={
+                  genre.id.toString() === selectedGenre ? "bold" : "normal"
+                }
+              >
+                {genre.name}
+              </Link>
             </HStack>
           </ListItem>
         ))}
