@@ -26,7 +26,7 @@ function App() {
       <Flex pl={4}>
         <GenreList />
         <Stack>
-          <HStack p={2}>
+          <HStack pt={2}>
             <Orderby onSelectOrderBy={(orderby) => setOrderBy(orderby)} />
             <PlatformFilter
               onSelectPlatform={(platform) => setSelectedPlaform(platform)}
