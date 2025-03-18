@@ -11,14 +11,16 @@ function App() {
   const [orderBy, setOrderBy] = useState<string>("");
   const [selectedPlatform, setSelectedPlaform] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const { data: games, isLoading } = useData<Game>(
     "/games",
     {
       ordering: orderBy,
       parent_platforms: selectedPlatform,
       genres: selectedGenre,
+      search: searchInput,
     },
-    [orderBy, selectedPlatform, selectedGenre]
+    [orderBy, selectedPlatform, selectedGenre, searchInput]
   );
 
   return (
@@ -30,7 +32,7 @@ function App() {
         gridTemplateColumns={"180px 1fr"}
       >
         <GridItem area={"header"}>
-          <Navigation />
+          <Navigation onSearch={(searchInput) => setSearchInput(searchInput)} />
         </GridItem>
         <GridItem pl={6} area={"asid"}>
           <GenreList

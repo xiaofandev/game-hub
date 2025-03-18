@@ -1,6 +1,11 @@
 import { Flex, HStack, Input, Switch, Text } from "@chakra-ui/react";
+import SearchInput from "./SearchInput";
 
-const Navigation = () => {
+interface Props {
+  onSearch: (searchInput: string) => void;
+}
+
+const Navigation = ({ onSearch }: Props) => {
   return (
     <Flex p={4} alignItems={"center"} gap={8}>
       <Text
@@ -17,7 +22,7 @@ const Navigation = () => {
       >
         Game Hub
       </Text>
-      <Input placeholder="Search games..." borderRadius={18}></Input>
+      <SearchInput onSearch={onSearch} />
       <HStack>
         <Switch size="lg" colorScheme="green"></Switch>
         <Text whiteSpace={"nowrap"}>Dark Mode</Text>
