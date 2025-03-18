@@ -17,14 +17,16 @@ export interface Game {
 
 interface Props {
   data: Game[] | undefined;
+  isLoading: boolean;
 }
 
-const GameList = ({ data }: Props) => {
+const GameList = ({ data, isLoading }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6];
+
   return (
     <>
-      <SimpleGrid columns={4} spacing={12} p={2} pt={0}>
-        {!data && skeletons.map((id) => <GameCardLoading key={id} />)}
+      <SimpleGrid columns={4} spacing={12} p={2} pt={2}>
+        {isLoading && skeletons.map((id) => <GameCardLoading key={id} />)}
         {data?.map((game) => (
           <GameCard data={game} key={game.id} />
         ))}

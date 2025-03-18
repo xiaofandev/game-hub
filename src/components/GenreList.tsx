@@ -11,13 +11,13 @@ import useGenres from "../hooks/useGenres";
 import GenreSkeleton from "./GenreSkeleton";
 
 const GenreList = () => {
-  const { data: genres, error } = useGenres();
+  const { data: genres, isLoading } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <Stack>
       <Heading>Genre</Heading>
       <List spacing={4}>
-        {!genres &&
+        {isLoading &&
           skeletons.map((id) => {
             return (
               <ListItem key={id}>
