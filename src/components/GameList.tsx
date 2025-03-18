@@ -27,9 +27,8 @@ const GameList = ({ data, isLoading }: Props) => {
     <>
       <SimpleGrid columns={4} spacing={12} p={2} pt={2}>
         {isLoading && skeletons.map((id) => <GameCardLoading key={id} />)}
-        {data?.map((game) => (
-          <GameCard data={game} key={game.id} />
-        ))}
+        {!isLoading &&
+          data?.map((game) => <GameCard data={game} key={game.id} />)}
       </SimpleGrid>
     </>
   );
