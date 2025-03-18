@@ -16,7 +16,6 @@ import {
   FaXbox,
   FaApple,
   FaLinux,
-  FaAndroid,
 } from "react-icons/fa";
 import { SiNintendo } from "react-icons/si";
 import { MdOutlinePhoneIphone } from "react-icons/md";
