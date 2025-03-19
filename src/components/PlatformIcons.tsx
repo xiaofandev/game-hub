@@ -31,9 +31,13 @@ const PlatformIcons = ({ platforms }: Props) => {
     android: AiOutlineAndroid,
   };
   return (
-    <HStack pb={2}>
+    <HStack>
       {platforms.map(({ platform }) => (
-        <Icon key={platform.id} as={iconMap[platform.slug]} />
+        <Icon
+          key={platform.id}
+          as={iconMap[platform.slug]}
+          color={"gray.400"}
+        />
       ))}
     </HStack>
   );
