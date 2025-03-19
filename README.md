@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Step1. Install the dependencied run:
+Step1. Install the dependencied:
 
 ```bash
 npm install
