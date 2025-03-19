@@ -15,7 +15,7 @@ const SearchInput = ({ onSearch }: Props) => {
         onSearch(ref.current?.value || "");
       }}
     >
-      <InputGroup>
+      <InputGroup width={800}>
         <InputLeftElement children={<BsSearch />}></InputLeftElement>
         <Input
           ref={ref}
