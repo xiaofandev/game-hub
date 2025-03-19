@@ -2,16 +2,16 @@
 
 ## Getting Started
 
-First, install the dependencied run:
+Step1. Install the dependencied run:
 
 ```bash
 npm install
 ```
 
-Then, run the development server:
+Step2. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-Last, open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Step3. Ppen [http://localhost:3000](http://localhost:3000) with your browser to see the result.
