@@ -10,7 +10,7 @@ const Logo = () => {
       p={2}
       borderRadius={56}
       letterSpacing={2}
-      width={56}
+      width={40}
       whiteSpace={"nowrap"}
       textAlign={"center"}
     >

@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
-import ColorSwitch from "./ColorSwitch";
+import ColorSwitch from "./ColorModeSwitch";
 import Logo from "./Logo";
 
 interface Props {
