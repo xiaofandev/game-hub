@@ -1,8 +1,8 @@
-# This is the source code for the React beginner course.
+# This source code is only for the React beginner course.
 
 ## Getting Started
 
-Step1. Install the dependencied:
+Step1. nstall the dependencied run:
 
 ```bash
 npm install
