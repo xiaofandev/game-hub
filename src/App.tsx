@@ -30,6 +30,7 @@ function App() {
                             "asid filter"
                             "asid main"`}
         gridTemplateColumns={"180px 1fr"}
+        gridTemplateRows={"100px 60px 1fr"}
       >
         <GridItem area={"header"}>
           <Navigation onSearch={(searchInput) => setSearchInput(searchInput)} />
