@@ -1,12 +1,4 @@
-import {
-  Card,
-  CardBody,
-  Text,
-  Image,
-  HStack,
-  Flex,
-  Badge,
-} from "@chakra-ui/react";
+import { Card, CardBody, Text, Image, HStack, Flex } from "@chakra-ui/react";
 import { Game } from "./GameList";
 import PlatformIcons from "./PlatformIcons";
 import RatingBadge from "./RatingBadge";

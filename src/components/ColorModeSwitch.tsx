@@ -1,8 +1,7 @@
-import { Button, HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
+import { HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
 
 const ColorModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  console.log(colorMode);
 
   return (
     <HStack width={140}>
