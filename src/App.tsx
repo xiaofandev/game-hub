@@ -26,11 +26,10 @@ function App() {
   return (
     <>
       <Grid
-        templateAreas={`"header header"
-                            "asid filter"
-                            "asid main"`}
-        gridTemplateColumns={"180px 1fr"}
-        gridTemplateRows={"100px 60px 1fr"}
+        templateAreas={{
+          base: `"header" "main"`,
+          lg: `"header header" "aside main"`,
+        }}
       >
         <GridItem area={"header"}>
           <Navigation onSearch={(searchInput) => setSearchInput(searchInput)} />
@@ -41,15 +40,13 @@ function App() {
             onSelectGenre={(genre) => setSelectedGenre(genre)}
           />
         </GridItem>
-        <GridItem area={"filter"}>
+        <GridItem area={"main"}>
           <HStack p={2}>
             <Orderby onSelectOrderBy={(orderby) => setOrderBy(orderby)} />
             <PlatformFilter
               onSelectPlatform={(platform) => setSelectedPlaform(platform)}
             />
           </HStack>
-        </GridItem>
-        <GridItem area={"main"}>
           <GameList data={games} isLoading={isLoading} />
         </GridItem>
       </Grid>
