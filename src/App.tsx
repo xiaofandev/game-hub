@@ -4,8 +4,8 @@ import Navigation from "./components/Navigation";
 import GameList, { Game } from "./components/GameList";
 import useData from "./hooks/useData";
 import { useState } from "react";
-import Orderby, { OrderBy } from "./components/Orderby";
-import PlatformFilter from "./components/PlatformFilter";
+import SortingSelector, { OrderBy } from "./components/SortingSelector";
+import PlatformSelector from "./components/PlatformSelector";
 
 function App() {
   const [orderBy, setOrderBy] = useState<OrderBy>();
@@ -42,11 +42,11 @@ function App() {
         </GridItem>
         <GridItem area={"main"}>
           <HStack p={2}>
-            <Orderby
+            <SortingSelector
               onSort={(orderby) => setOrderBy(orderby)}
               orderBy={orderBy}
             />
-            <PlatformFilter
+            <PlatformSelector
               onSelectPlatform={(platform) => setSelectedPlaform(platform)}
             />
           </HStack>
