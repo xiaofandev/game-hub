@@ -5,18 +5,18 @@ import GameList, { Game } from "./components/GameList";
 import useData from "./hooks/useData";
 import { useState } from "react";
 import SortingSelector, { OrderBy } from "./components/SortingSelector";
-import PlatformSelector from "./components/PlatformSelector";
+import PlatformSelector, { Platform } from "./components/PlatformSelector";
 
 function App() {
   const [orderBy, setOrderBy] = useState<OrderBy>();
-  const [selectedPlatform, setSelectedPlaform] = useState("");
+  const [selectedPlatform, setSelectedPlaform] = useState<Platform>();
   const [selectedGenre, setSelectedGenre] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const { data: games, isLoading } = useData<Game>(
     "/games",
     {
       ordering: orderBy,
-      parent_platforms: selectedPlatform,
+      parent_platforms: selectedPlatform?.id,
       genres: selectedGenre,
       search: searchInput,
     },
@@ -47,6 +47,7 @@ function App() {
               orderBy={orderBy}
             />
             <PlatformSelector
+              platform={selectedPlatform}
               onSelectPlatform={(platform) => setSelectedPlaform(platform)}
             />
           </HStack>
