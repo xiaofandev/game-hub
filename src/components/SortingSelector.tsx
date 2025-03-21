@@ -10,7 +10,7 @@ interface Props {
   orderBy?: OrderBy;
   onSort: (orderBy: OrderBy) => void;
 }
-const Orderby = ({ orderBy, onSort }: Props) => {
+const SortingSelector = ({ orderBy, onSort }: Props) => {
   const orderByList: OrderBy[] = [
     {
       value: "-added",
@@ -53,4 +53,4 @@ const Orderby = ({ orderBy, onSort }: Props) => {
   );
 };
 
-export default Orderby;
+export default SortingSelector;

@@ -9,7 +9,7 @@ interface Platform {
   id: string;
   name: string;
 }
-const PlatformFilter = ({ onSelectPlatform }: Props) => {
+const PlatformSelector = ({ onSelectPlatform }: Props) => {
   const { data: platforms } = useData<Platform>("/platforms/lists/parents");
   return (
     <Select
@@ -28,4 +28,4 @@ const PlatformFilter = ({ onSelectPlatform }: Props) => {
   );
 };
 
-export default PlatformFilter;
+export default PlatformSelector;
