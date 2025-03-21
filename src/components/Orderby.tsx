@@ -1,25 +1,54 @@
-import { Select, Text } from "@chakra-ui/react";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { BiChevronDown } from "react-icons/bi";
+
+export interface OrderBy {
+  value: string;
+  label: string;
+}
 
 interface Props {
-  onSelectOrderBy: (value: string) => void;
+  orderBy?: OrderBy;
+  onSort: (orderBy: OrderBy) => void;
 }
-const Orderby = ({ onSelectOrderBy }: Props) => {
+const Orderby = ({ orderBy, onSort }: Props) => {
+  const orderByList: OrderBy[] = [
+    {
+      value: "-added",
+      label: "Date added",
+    },
+    {
+      value: "name",
+      label: "Name",
+    },
+    {
+      value: "-released",
+      label: "Release date",
+    },
+    {
+      value: "-metacritic",
+      label: "Popularity",
+    },
+    {
+      value: "-rating",
+      label: "Average rating",
+    },
+  ];
   return (
     <>
-      <Text>Orderby:</Text>
-      <Select
-        placeholder="Relevance"
-        onChange={(e) => {
-          onSelectOrderBy(e.target.value);
-        }}
-        width={200}
-      >
-        <option value="added">Date added</option>
-        <option value="name">Name</option>
-        <option value="released">Release date</option>
-        <option value="metacritic">Popularity</option>
-        <option value="rating">Average rating</option>
-      </Select>
+      <Menu>
+        <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+          Order by: {orderBy?.label ? orderBy.label : "Relavance"}
+        </MenuButton>
+        <MenuList>
+          {orderByList.map((orderBy) => {
+            return (
+              <MenuItem key={orderBy.value} onClick={() => onSort(orderBy)}>
+                {orderBy.label}
+              </MenuItem>
+            );
+          })}
+        </MenuList>
+      </Menu>
     </>
   );
 };
