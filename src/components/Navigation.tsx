@@ -9,7 +9,7 @@ interface Props {
 
 const Navigation = ({ onSearch }: Props) => {
   return (
-    <Flex p={8} justifyContent={"space-between"}>
+    <Flex p={4} justifyContent={"space-between"}>
       <Logo />
       <SearchInput onSearch={onSearch} />
       <ColorSwitch />

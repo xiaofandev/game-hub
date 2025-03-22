@@ -31,16 +31,16 @@ function App() {
     <>
       <Grid
         templateAreas={{
-          base: `"header" "main"`,
-          lg: `"header header" "aside main"`,
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area={"header"}>
+        <GridItem area={"nav"}>
           <Navigation
             onSearch={(search) => setQueryParam({ ...queryParam, search })}
           />
         </GridItem>
-        <GridItem pl={6} area={"asid"}>
+        <GridItem pl={6} area={"aside"}>
           <GenreList
             selectedGenre={queryParam?.genre}
             onSelectGenre={(genre) => setQueryParam({ ...queryParam, genre })}
