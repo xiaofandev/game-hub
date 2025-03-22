@@ -12,26 +12,12 @@ interface Props {
 }
 const SortingSelector = ({ orderBy, onSort }: Props) => {
   const orderByList: OrderBy[] = [
-    {
-      value: "-added",
-      label: "Date added",
-    },
-    {
-      value: "name",
-      label: "Name",
-    },
-    {
-      value: "-released",
-      label: "Release date",
-    },
-    {
-      value: "-metacritic",
-      label: "Popularity",
-    },
-    {
-      value: "-rating",
-      label: "Average rating",
-    },
+    { value: "", label: "Relavance" },
+    { value: "-added", label: "Date added" },
+    { value: "name", label: "Name" },
+    { value: "-released", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average rating" },
   ];
   return (
     <>
