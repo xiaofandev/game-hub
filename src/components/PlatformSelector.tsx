@@ -1,5 +1,6 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import useData from "../hooks/useData";
+import { BiChevronDown } from "react-icons/bi";
 
 export interface Platform {
   id: string;
@@ -15,7 +16,7 @@ const PlatformSelector = ({ platform, onSelectPlatform }: Props) => {
   const { data: platforms } = useData<Platform>("/platforms/lists/parents");
   return (
     <Menu>
-      <MenuButton as={Button}>
+      <MenuButton as={Button} rightIcon={<BiChevronDown />}>
         {platform ? platform.name : "All Platforms"}
       </MenuButton>
       <MenuList>
