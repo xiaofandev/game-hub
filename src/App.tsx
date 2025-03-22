@@ -1,5 +1,5 @@
 import { Grid, GridItem, HStack } from "@chakra-ui/react";
-import GenreList from "./components/GenreList";
+import GenreList, { Genre } from "./components/GenreList";
 import Navigation from "./components/Navigation";
 import GameList, { Game } from "./components/GameList";
 import useData from "./hooks/useData";
@@ -7,20 +7,24 @@ import { useState } from "react";
 import SortingSelector, { OrderBy } from "./components/SortingSelector";
 import PlatformSelector, { Platform } from "./components/PlatformSelector";
 
+interface QueryParam {
+  orderBy?: OrderBy;
+  platform?: Platform;
+  genre?: Genre;
+  search?: string;
+}
+
 function App() {
-  const [orderBy, setOrderBy] = useState<OrderBy>();
-  const [selectedPlatform, setSelectedPlaform] = useState<Platform>();
-  const [selectedGenre, setSelectedGenre] = useState("");
-  const [searchInput, setSearchInput] = useState("");
+  const [queryParam, setQueryParam] = useState<QueryParam>();
   const { data: games, isLoading } = useData<Game>(
     "/games",
     {
-      ordering: orderBy,
-      parent_platforms: selectedPlatform?.id,
-      genres: selectedGenre,
-      search: searchInput,
+      ordering: queryParam?.orderBy?.value,
+      parent_platforms: queryParam?.platform?.id,
+      genres: queryParam?.genre?.id,
+      search: queryParam?.search,
     },
-    [orderBy, selectedPlatform, selectedGenre, searchInput]
+    [queryParam]
   );
 
   return (
@@ -32,23 +36,27 @@ function App() {
         }}
       >
         <GridItem area={"header"}>
-          <Navigation onSearch={(searchInput) => setSearchInput(searchInput)} />
+          <Navigation
+            onSearch={(search) => setQueryParam({ ...queryParam, search })}
+          />
         </GridItem>
         <GridItem pl={6} area={"asid"}>
           <GenreList
-            selectedGenre={selectedGenre}
-            onSelectGenre={(genre) => setSelectedGenre(genre)}
+            selectedGenre={queryParam?.genre}
+            onSelectGenre={(genre) => setQueryParam({ ...queryParam, genre })}
           />
         </GridItem>
         <GridItem area={"main"}>
           <HStack p={2}>
             <SortingSelector
-              onSort={(orderby) => setOrderBy(orderby)}
-              orderBy={orderBy}
+              onSort={(orderBy) => setQueryParam({ ...queryParam, orderBy })}
+              orderBy={queryParam?.orderBy}
             />
             <PlatformSelector
-              platform={selectedPlatform}
-              onSelectPlatform={(platform) => setSelectedPlaform(platform)}
+              platform={queryParam?.platform}
+              onSelectPlatform={(platform) =>
+                setQueryParam({ ...queryParam, platform })
+              }
             />
           </HStack>
           <GameList data={games} isLoading={isLoading} />

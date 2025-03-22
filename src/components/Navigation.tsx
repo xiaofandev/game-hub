@@ -4,7 +4,7 @@ import ColorSwitch from "./ColorModeSwitch";
 import Logo from "./Logo";
 
 interface Props {
-  onSearch: (searchInput: string) => void;
+  onSearch: (search: string) => void;
 }
 
 const Navigation = ({ onSearch }: Props) => {

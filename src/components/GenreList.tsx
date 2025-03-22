@@ -10,15 +10,15 @@ import {
 import GenreSkeleton from "./GenreSkeleton";
 import useData from "../hooks/useData";
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
   image_background: string;
 }
 
 interface Props {
-  selectedGenre?: string;
-  onSelectGenre: (genre: string) => void;
+  selectedGenre?: Genre;
+  onSelectGenre: (genre: Genre) => void;
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
@@ -48,10 +48,8 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
                 objectFit="cover"
               />
               <Link
-                onClick={() => onSelectGenre(genre.id.toString())}
-                fontWeight={
-                  genre.id.toString() === selectedGenre ? "bold" : "normal"
-                }
+                onClick={() => onSelectGenre(genre)}
+                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               >
                 {genre.name}
               </Link>
