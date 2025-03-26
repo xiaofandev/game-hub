@@ -17,10 +17,10 @@ const GameCard = ({ data }: Props) => {
         width="100%"
       />
       <CardBody>
-        <Flex justifyContent={"space-between"} alignItems={"center"} pb={1}>
+        <HStack justifyContent={"space-between"} pb={1}>
           <PlatformIcons platforms={data.parent_platforms} />
           <RatingBadge metacritic={data.metacritic} />
-        </Flex>
+        </HStack>
         <HStack>
           <Text fontWeight={680} fontSize={24}>
             {data.name}&nbsp;
