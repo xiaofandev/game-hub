@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import SearchInput from "./SearchInput";
 import Logo from "./Logo";
 
@@ -8,10 +8,10 @@ interface Props {
 
 const Navigation = ({ onSearch }: Props) => {
   return (
-    <Flex p={4} justifyContent={"space-between"}>
+    <HStack p={4}>
       <Logo />
       <SearchInput onSearch={onSearch} />
-    </Flex>
+    </HStack>
   );
 };
 
