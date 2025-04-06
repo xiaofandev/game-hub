@@ -10,26 +10,31 @@ const useData = <T>(
 ) => {
   const [data, setData] = useState<T[]>();
   const [error, setError] = useState<string>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    const controller = new AbortController();
-    const params = removeEmptyProperties(originalParams);
-    setIsLoading(true);
-    apiClient
-      .get(url, { params, signal: controller.signal })
-      .then((resp) => {
-        setIsLoading(false);
-        setData(resp.data.results);
-      })
-      .catch((error: Error) => {
-        setIsLoading(false);
-        if (!(error instanceof CanceledError)) {
+  useEffect(
+    () => {
+      const controller = new AbortController();
+      const params = removeEmptyProperties(originalParams);
+      setLoading(true);
+
+      apiClient
+        .get(url, { params, signal: controller.signal })
+        .then((resp) => {
+          setLoading(false);
+          setData(resp.data.results);
+        })
+        .catch((error: Error) => {
+          if (error instanceof CanceledError) {
+            return;
+          }
+          setLoading(false);
           setError(error.message);
-        }
-      });
-    return () => controller.abort();
-  }, dependencies);
+        });
+      return () => controller.abort();
+    },
+    dependencies ? dependencies : []
+  );
   return { data, error, isLoading };
 };
 

@@ -17,7 +17,11 @@ interface QueryParam {
 
 function App() {
   const [queryParam, setQueryParam] = useState<QueryParam>();
-  const { data: games, isLoading } = useData<Game>(
+  const {
+    data: games,
+    error,
+    isLoading,
+  } = useData<Game>(
     "/games",
     {
       ordering: queryParam?.orderBy?.value,
@@ -62,7 +66,7 @@ function App() {
               orderBy={queryParam?.orderBy}
             />
           </Stack>
-          <GameList data={games} isLoading={isLoading} />
+          <GameList error={error} data={games} isLoading={isLoading} />
         </GridItem>
       </Grid>
     </>

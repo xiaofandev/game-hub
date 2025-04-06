@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 
@@ -17,14 +17,17 @@ export interface Game {
 
 interface Props {
   data: Game[] | undefined;
+  error: string | undefined;
   isLoading: boolean;
 }
 
-const GameList = ({ data, isLoading }: Props) => {
+const GameList = ({ data, error, isLoading }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6];
+  console.log(isLoading);
 
   return (
     <>
+      {error && <Text>{error}</Text>}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} p={2} spacing={4}>
         {isLoading && skeletons.map((id) => <GameCardSkeleton key={id} />)}
         {!isLoading &&
