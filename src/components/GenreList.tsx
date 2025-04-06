@@ -25,7 +25,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data: genres, isLoading } = useData<Genre>("/genres");
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
-    <Stack width={180}>
+    <Stack width={180} padding={2} pl={6}>
       <Heading>Genre</Heading>
       <List spacing={4} mt={4}>
         {isLoading &&
