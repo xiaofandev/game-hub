@@ -6,6 +6,7 @@ import {
   Heading,
   Stack,
   Link,
+  Text,
 } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
 import useGenre, { Genre } from "../hooks/useGenre";
@@ -16,11 +17,12 @@ interface Props {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-  const { data: genres, isLoading } = useGenre();
+  const { data: genres, error, isLoading } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
-    <Stack width={180} padding={2} pl={6}>
+    <Stack padding={2} pl={6}>
       <Heading>Genre</Heading>
+      {error && <Text>{error}</Text>}
       <List spacing={4} mt={4}>
         {isLoading &&
           skeletons.map((id) => {
