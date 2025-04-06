@@ -8,13 +8,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
-import useData from "../hooks/useData";
-
-export interface Genre {
-  id: number;
-  name: string;
-  image_background: string;
-}
+import useGenre, { Genre } from "../hooks/useGenre";
 
 interface Props {
   selectedGenre?: Genre;
@@ -22,7 +16,7 @@ interface Props {
 }
 
 const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
-  const { data: genres, isLoading } = useData<Genre>("/genres");
+  const { data: genres, isLoading } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <Stack width={180} padding={2} pl={6}>
