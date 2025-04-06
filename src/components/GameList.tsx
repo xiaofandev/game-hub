@@ -31,13 +31,13 @@ const GameList = ({ data, error, isLoading }: Props) => {
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} p={2} spacing={4}>
         {isLoading &&
           skeletons.map((id) => (
-            <CardContainer>
+            <CardContainer key={id}>
               <GameCardSkeleton key={id} />
             </CardContainer>
           ))}
         {!isLoading &&
           data?.map((game) => (
-            <CardContainer>
+            <CardContainer key={game.id}>
               <GameCard data={game} key={game.id} />
             </CardContainer>
           ))}
