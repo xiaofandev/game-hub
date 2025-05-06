@@ -2,19 +2,7 @@ import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import CardContainer from "./GameCardContainer";
-
-interface Platform {
-  id: number;
-  slug: string;
-}
-
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: [{ platform: Platform }];
-  metacritic: number;
-}
+import { Game } from "../hooks/useGames";
 
 interface Props {
   data: Game[] | undefined;

@@ -23,7 +23,9 @@ function App() {
       >
         <GridItem area={"nav"}>
           <Navigation
-            onSearch={(search) => setQueryParam({ ...queryParam, search })}
+            onSearch={(search) =>
+              setQueryParam({ ...queryParam, searchText: search })
+            }
           />
         </GridItem>
         <Show above="lg">
@@ -47,7 +49,7 @@ function App() {
               orderBy={queryParam?.orderBy}
             />
           </Stack>
-          <GameList error={error} data={games} isLoading={isLoading} />
+          <GameList error={error?.message} data={games} isLoading={isLoading} />
         </GridItem>
       </Grid>
     </>
