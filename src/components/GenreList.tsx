@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
-import useGenre, { Genre } from "../hooks/useGenre";
+import useGenre, { Genre } from "../hooks/useGenres";
 
 interface Props {
   selectedGenre?: Genre;
@@ -22,7 +22,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   return (
     <Stack padding={2} pl={6}>
       <Heading>Genre</Heading>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
       <List spacing={4} mt={4}>
         {isLoading &&
           skeletons.map((id) => {

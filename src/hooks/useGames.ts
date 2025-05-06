@@ -1,8 +1,8 @@
 import { Game } from "../components/GameList";
-import { Platform } from "../components/PlatformSelector";
 import { OrderBy } from "../components/SortingSelector";
 import useData from "./useData";
-import { Genre } from "./useGenre";
+import { Genre } from "./useGenres";
+import { Platform } from "./usePlatforms";
 
 export interface QueryParam {
   orderBy?: OrderBy;
