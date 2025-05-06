@@ -1,41 +1,18 @@
-import { useEffect, useState } from "react";
+import { QueryKey, useQuery } from "@tanstack/react-query";
 import apiClient from "../api/api-client";
-import { CanceledError } from "axios";
-import { removeEmptyProperties } from "../utils/ObjectUtils";
 
-const useData = <T>(
-  url: string,
-  originalParams?: any,
-  dependencies: any[] = []
-) => {
-  const [data, setData] = useState<T[]>();
-  const [error, setError] = useState<string>();
-  const [isLoading, setLoading] = useState<boolean>(false);
+interface FetchResponse<T> {
+  results: T[];
+}
 
-  useEffect(
-    () => {
-      const controller = new AbortController();
-      const params = removeEmptyProperties(originalParams);
-      setLoading(true);
-
+const useData = <T>(cachekey: QueryKey, endpoint: string, params?: any) => {
+  return useQuery<T[], Error>({
+    queryKey: cachekey,
+    queryFn: () =>
       apiClient
-        .get(url, { params, signal: controller.signal })
-        .then((resp) => {
-          setLoading(false);
-          setData(resp.data.results);
-        })
-        .catch((error: Error) => {
-          if (error instanceof CanceledError) {
-            return;
-          }
-          setLoading(false);
-          setError(error.message);
-        });
-      return () => controller.abort();
-    },
-    dependencies ? dependencies : []
-  );
-  return { data, error, isLoading };
+        .get<FetchResponse<T>>(endpoint, { params })
+        .then((res) => res.data.results),
+  });
 };
 
 export default useData;

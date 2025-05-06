@@ -4,6 +4,7 @@ import { OrderBy } from "../components/SortingSelector";
 import { Genre } from "./useGenres";
 import { Platform } from "./usePlatforms";
 import { removeEmptyProperties } from "../utils/ObjectUtils";
+import useData from "./useData";
 
 export interface QueryParam {
   orderBy?: OrderBy;
@@ -21,20 +22,20 @@ export interface Game {
 }
 
 const useGames = (queryParam: QueryParam) => {
-  return useQuery<Game[], Error>({
-    queryKey: ["games", removeEmptyProperties(queryParam)],
-    queryFn: () =>
-      apiClient
-        .get("/games", {
-          params: {
-            ordering: queryParam.orderBy?.value,
-            platforms: queryParam.platform?.id,
-            genres: queryParam.genre?.id,
-            search: queryParam.searchText,
-          },
-        })
-        .then((res) => res.data.results),
-  });
+  const params = {
+    ordering: queryParam.orderBy?.value,
+    platforms: queryParam.platform?.id,
+    genres: queryParam.genre?.id,
+    search: queryParam.searchText,
+  };
+
+  const noneEmptyValueParams = removeEmptyProperties(params);
+
+  return useData<Game>(
+    ["games", noneEmptyValueParams],
+    "/games",
+    noneEmptyValueParams
+  );
 };
 
 export default useGames;
