@@ -7,11 +7,9 @@ export interface Platform {
 }
 
 const usePlatforms = () => {
-  const fetchPlatforms = () =>
-    apiClient.get("/platforms").then((res) => res.data.results);
   return useQuery<Platform[]>({
     queryKey: ["platforms"],
-    queryFn: fetchPlatforms,
+    queryFn: () => apiClient.get("/platforms").then((res) => res.data.results),
   });
 };
 

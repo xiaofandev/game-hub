@@ -8,8 +8,10 @@ export interface Genre {
 }
 
 const useGenre = () => {
-  const fetchGenres = async () => apiClient.get('/genres').then((res => res.data.results));
-  return useQuery<Genre[], Error>({queryKey: ["genres"], queryFn: fetchGenres});
+  return useQuery<Genre[], Error>({
+    queryKey: ["genres"],
+    queryFn: () => apiClient.get("/genres").then((res) => res.data.results),
+  });
 };
 
 export default useGenre;
