@@ -6,11 +6,10 @@ import { useState } from "react";
 import SortingSelector from "./components/SortingSelector";
 import PlatformSelector from "./components/PlatformSelector";
 import "./App.css";
-import useGames, { QueryParam } from "./hooks/useGames";
+import { QueryParam } from "./hooks/useGames";
 
 function App() {
   const [queryParam, setQueryParam] = useState<QueryParam>({});
-  const { data: games, error, isLoading } = useGames(queryParam);
 
   return (
     <>
@@ -49,7 +48,7 @@ function App() {
               orderBy={queryParam?.orderBy}
             />
           </Stack>
-          <GameList error={error?.message} data={games} isLoading={isLoading} />
+          <GameList queryParam={queryParam} />
         </GridItem>
       </Grid>
     </>

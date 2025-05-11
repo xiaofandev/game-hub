@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import apiClient from "../api/api-client";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { OrderBy } from "../components/SortingSelector";
 import { Genre } from "./useGenres";
 import { Platform } from "./usePlatforms";
 import { removeEmptyProperties } from "../utils/ObjectUtils";
-import useData from "./useData";
+import APIClient from "../api/apiClient";
 
 export interface QueryParam {
   orderBy?: OrderBy;
@@ -21,6 +20,8 @@ export interface Game {
   metacritic: number;
 }
 
+const apiClient = new APIClient<Game>("/games");
+
 const useGames = (queryParam: QueryParam) => {
   const params = {
     ordering: queryParam.orderBy?.value,
@@ -31,11 +32,21 @@ const useGames = (queryParam: QueryParam) => {
 
   const noneEmptyValueParams = removeEmptyProperties(params);
 
-  return useData<Game>(
-    ["games", noneEmptyValueParams],
-    "/games",
-    noneEmptyValueParams
-  );
+  const pageSize = 20;
+  return useInfiniteQuery<Game[], Error>({
+    queryKey: ["games", noneEmptyValueParams],
+    queryFn: ({ pageParam = 1 }) =>
+      apiClient.getAll({
+        params: {
+          ...noneEmptyValueParams,
+          page: pageParam,
+          page_size: pageSize,
+        },
+      }),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.length > 0 ? pages.length + 1 : undefined;
+    },
+  });
 };
 
 export default useGames;
