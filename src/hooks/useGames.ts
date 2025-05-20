@@ -1,16 +1,8 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { OrderBy } from "../components/SortingSelector";
-import { Genre } from "./useGenres";
-import { Platform } from "./usePlatforms";
-import { removeEmptyProperties } from "../utils/ObjectUtils";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import APIClient from "../api/apiClient";
-
-export interface QueryParam {
-  orderBy?: OrderBy;
-  platform?: Platform;
-  genre?: Genre;
-  searchText?: string;
-}
+import useQueryParamStore from "../store";
+import { removeEmptyProperties } from "../utils/ObjectUtils";
+import { Platform } from "./usePlatforms";
 
 export interface Game {
   id: number;
@@ -22,7 +14,8 @@ export interface Game {
 
 const apiClient = new APIClient<Game>("/games");
 
-const useGames = (queryParam: QueryParam) => {
+const useGames = () => {
+  const queryParam = useQueryParamStore((s) => s.queryParam);
   const params = {
     ordering: queryParam.orderBy?.value,
     platforms: queryParam.platform?.id,

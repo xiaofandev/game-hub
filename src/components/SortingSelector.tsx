@@ -1,17 +1,11 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BiChevronDown } from "react-icons/bi";
+import useQueryParamStore from "../store";
 
-export interface OrderBy {
-  value: string;
-  label: string;
-}
-
-interface Props {
-  orderBy?: OrderBy;
-  onSort: (orderBy: OrderBy) => void;
-}
-const SortingSelector = ({ orderBy, onSort }: Props) => {
-  const orderByList: OrderBy[] = [
+const SortingSelector = () => {
+  const setOrderBy = useQueryParamStore((s) => s.setOrderBy);
+  const orderBy = useQueryParamStore((s) => s.queryParam.orderBy);
+  const orderByList = [
     { value: "", label: "Relavance" },
     { value: "-added", label: "Date added" },
     { value: "name", label: "Name" },
@@ -28,7 +22,7 @@ const SortingSelector = ({ orderBy, onSort }: Props) => {
         <MenuList>
           {orderByList.map((orderBy) => {
             return (
-              <MenuItem key={orderBy.value} onClick={() => onSort(orderBy)}>
+              <MenuItem key={orderBy.value} onClick={() => setOrderBy(orderBy)}>
                 {orderBy.label}
               </MenuItem>
             );

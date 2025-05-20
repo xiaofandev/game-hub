@@ -1,16 +1,12 @@
 import { Grid, GridItem, Show, Stack } from "@chakra-ui/react";
+import "./App.css";
+import GameList from "./components/GameList";
 import GenreList from "./components/GenreList";
 import Navigation from "./components/Navigation";
-import GameList from "./components/GameList";
-import { useState } from "react";
-import SortingSelector from "./components/SortingSelector";
 import PlatformSelector from "./components/PlatformSelector";
-import "./App.css";
-import { QueryParam } from "./hooks/useGames";
+import SortingSelector from "./components/SortingSelector";
 
 function App() {
-  const [queryParam, setQueryParam] = useState<QueryParam>({});
-
   return (
     <>
       <Grid
@@ -21,34 +17,19 @@ function App() {
         templateColumns={{ lg: "1fr 6fr" }}
       >
         <GridItem area={"nav"}>
-          <Navigation
-            onSearch={(search) =>
-              setQueryParam({ ...queryParam, searchText: search })
-            }
-          />
+          <Navigation />
         </GridItem>
         <Show above="lg">
           <GridItem area={"aside"}>
-            <GenreList
-              selectedGenre={queryParam?.genre}
-              onSelectGenre={(genre) => setQueryParam({ ...queryParam, genre })}
-            />
+            <GenreList />
           </GridItem>
         </Show>
         <GridItem area={"main"}>
           <Stack p={2} direction={{ base: "column", lg: "row" }}>
-            <PlatformSelector
-              platform={queryParam?.platform}
-              onSelectPlatform={(platform) =>
-                setQueryParam({ ...queryParam, platform })
-              }
-            />
-            <SortingSelector
-              onSort={(orderBy) => setQueryParam({ ...queryParam, orderBy })}
-              orderBy={queryParam?.orderBy}
-            />
+            <PlatformSelector />
+            <SortingSelector />
           </Stack>
-          <GameList queryParam={queryParam} />
+          <GameList />
         </GridItem>
       </Grid>
     </>

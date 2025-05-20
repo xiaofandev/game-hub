@@ -9,14 +9,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import GenreSkeleton from "./GenreSkeleton";
-import useGenre, { Genre } from "../hooks/useGenres";
+import useGenre from "../hooks/useGenres";
+import useQueryParamStore from "../store";
 
-interface Props {
-  selectedGenre?: Genre;
-  onSelectGenre: (genre: Genre) => void;
-}
+const GenreList = () => {
+  const selectedGenre = useQueryParamStore((state) => state.queryParam.genre);
+  const setGenre = useQueryParamStore((state) => state.setGenre);
 
-const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data: genres, error, isLoading } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
@@ -44,7 +43,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
                 objectFit="cover"
               />
               <Link
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setGenre(genre)}
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               >
                 {genre.name}
