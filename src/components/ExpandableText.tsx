@@ -14,7 +14,7 @@ const ExpandableText = ({ children, limit = 300 }: Props) => {
   const summary = expanded ? children : children.substring(0, limit) + "...";
 
   return (
-    <Text>
+    <Text my={4}>
       {summary}
       <Button
         ml={1}
