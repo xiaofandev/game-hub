@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import APIClient from "../api/apiClient";
-
-export interface Genre {
-  id: number;
-  name: string;
-  image_background: string;
-}
+import { Genre } from "./Genre";
 
 const apiClient = new APIClient<Genre>("/genres");
 
