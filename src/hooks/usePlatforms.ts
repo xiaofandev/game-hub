@@ -4,6 +4,7 @@ import APIClient from "../api/apiClient";
 export interface Platform {
   id: string;
   name: string;
+  slug: string;
 }
 
 const apiClient = new APIClient<Platform>("/platforms");

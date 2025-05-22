@@ -9,7 +9,7 @@ const Routing = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="games/:id" element={<GameDetails />} />
+        <Route path="games/:slug" element={<GameDetails />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

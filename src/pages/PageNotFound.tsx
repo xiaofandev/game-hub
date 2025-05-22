@@ -1,11 +1,7 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 const PageNotFound = () => {
-  return (
-    <Box p={5}>
-      <Text>Page not found.</Text>
-    </Box>
-  );
+  return <Text>Page not found.</Text>;
 };
 
 export default PageNotFound;

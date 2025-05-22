@@ -10,11 +10,7 @@ import {
 import { SiNintendo } from "react-icons/si";
 import { MdOutlinePhoneIphone } from "react-icons/md";
 import { AiOutlineAndroid } from "react-icons/ai";
-
-interface Platform {
-  id: number;
-  slug: string;
-}
+import { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   platforms: [{ platform: Platform }];
