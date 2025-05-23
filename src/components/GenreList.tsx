@@ -19,7 +19,7 @@ const GenreList = () => {
   const { data: genres, error, isLoading } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
-    <Stack padding={2} pl={6}>
+    <Stack>
       <Heading>Genre</Heading>
       {error && <Text>{error.message}</Text>}
       <List spacing={4} mt={4}>

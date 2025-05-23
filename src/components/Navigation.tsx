@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 const Navigation = () => {
   return (
-    <HStack p={4}>
+    <HStack p={4} mt={2}>
       <Link to="/">
         <Logo />
       </Link>

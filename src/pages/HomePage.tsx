@@ -20,7 +20,7 @@ const HomePage = () => {
           </GridItem>
         </Show>
         <GridItem area={"main"}>
-          <Stack p={2} direction={{ base: "column", lg: "row" }}>
+          <Stack mb={6} direction={{ base: "column", lg: "row" }}>
             <PlatformSelector />
             <SortingSelector />
           </Stack>
