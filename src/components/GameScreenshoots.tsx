@@ -11,7 +11,7 @@ const GameScreenshoots = ({ gameId }: Props) => {
   if (isLoading) return <Spinner />;
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} mt={6}>
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={4} mt={6}>
       {data.map((item) => (
         <GridItem key={item.id}>
           <img src={item.image} alt="screenshoot" />

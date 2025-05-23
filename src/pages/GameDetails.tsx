@@ -14,14 +14,21 @@ const GameDetails = () => {
 
   if (error) return <Text>{error.message}</Text>;
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
-      <GridItem>
+    <SimpleGrid
+      templateAreas={{
+        base: '"info" "video" "pic"',
+        lg: '"info video" "pic pic"',
+      }}
+    >
+      <GridItem area="info">
         <Heading my={4}>{game.name}</Heading>
         <ExpandableText>{game.description_raw}</ExpandableText>
         <GameAttributes game={game} />
       </GridItem>
-      <GridItem>
+      <GridItem area="video">
         <GameTrailers gameId={game.id} />
+      </GridItem>
+      <GridItem area="pic">
         <GameScreenshoots gameId={game.id} />
       </GridItem>
     </SimpleGrid>
