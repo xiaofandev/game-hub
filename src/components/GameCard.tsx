@@ -3,7 +3,7 @@ import PlatformIcons from "./PlatformIcons";
 import RatingBadge from "./RatingBadge";
 import Emoji from "./Emoji";
 import { NavLink } from "react-router";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 
 interface Props {
   data: Game;
