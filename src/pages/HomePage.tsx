@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show, Stack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Show, Stack } from "@chakra-ui/react";
 import GenreList from "../components/GenreList";
 import PlatformSelector from "../components/PlatformSelector";
 import SortingSelector from "../components/SortingSelector";
@@ -20,7 +20,7 @@ const HomePage = () => {
           </GridItem>
         </Show>
         <GridItem area={"main"}>
-          <Stack mb={6} direction={{ base: "column", lg: "row" }}>
+          <Stack direction={{ base: "column", lg: "row" }}>
             <PlatformSelector />
             <SortingSelector />
           </Stack>

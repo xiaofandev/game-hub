@@ -20,7 +20,7 @@ const GameList = () => {
       loader={<Spinner />}
     >
       {error && <Text>{error.message}</Text>}
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={4}>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing={4} pt={6}>
         {isLoading &&
           skeletons.map((id) => (
             <CardContainer key={id}>
